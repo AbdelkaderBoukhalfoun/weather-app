@@ -21,13 +21,13 @@ body {
 .card {
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, rgba(147, 104, 233, 0.8), #5b548a); /* Adjust the alpha value (0.8) for transparency */
+    background: linear-gradient(135deg, rgba(147, 104, 233, 0.8), #5b548a);
     color: #fff;
     margin: 100px auto 0;
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search {

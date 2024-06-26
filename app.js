@@ -11,11 +11,11 @@ const weatherContainer = document.querySelector(".weather");
 const errorContainer = document.querySelector(".error");
 
 // Function to update the weather icon
-function updateWeatherIcon(weatherCondition) {
+function updateWeatherIcon(weatherCondition, isNight) {
     const condition = weatherCondition.toLowerCase();
     const iconMap = {
-        'clouds': "images/clouds.png",
-        'clear': "images/clear.png",
+        'clouds': isNight ? "images/cloudy-night.png" : "images/clouds.png",
+        'clear': isNight ? "images/moon.png" : "images/clear.png",
         'rain': "images/rain.png",
         'drizzle': "images/drizzle.png",
         'mist': "images/mist.png"
@@ -29,7 +29,13 @@ function displayWeatherData(data) {
     document.querySelector(".temp").textContent = `${Math.round(data.main.temp)}°C`;
     document.querySelector(".humidity").textContent = `${data.main.humidity}%`;
     document.querySelector(".wind").textContent = `${data.wind.speed} km/h`;
-    updateWeatherIcon(data.weather[0].main);
+
+    const timezoneOffset = data.timezone; // in seconds
+    const localTime = new Date(new Date().getTime() + (timezoneOffset * 1000));
+    const hours = localTime.getUTCHours();
+    const isNight = hours >= 18 || hours < 6;
+
+    updateWeatherIcon(data.weather[0].main, isNight);
 
     errorContainer.style.display = "none";
     weatherContainer.style.display = "block";
